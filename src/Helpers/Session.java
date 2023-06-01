@@ -13,6 +13,10 @@ public class Session {
         isLoggedIn = false;
     }
 
+    public static void setLoggedIn() {
+        isLoggedIn = true;
+    }
+
     public static String getUsername() {
         return name;
     }

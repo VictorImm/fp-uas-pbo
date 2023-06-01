@@ -1,0 +1,31 @@
+package Controllers.Account;
+
+import Controllers.BaseController;
+import Helpers.Session;
+
+import com.google.gson.*;
+
+public class User extends BaseController{
+
+    // public User() {
+    //     throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    // }
+    public String login(String email, String password) {
+        String notif = "";
+        try {
+            JsonObject response = panitiaApi.loginEmail(email, password).getAsJsonObject();
+            if(response.get("ok").getAsBoolean()){
+                Session.setLoggedIn();
+                Session.setUsername(response.get("data").getAsJsonObject().get("account").getAsJsonObject().get("name").getAsString());
+                Session.setEmail(response.get("data").getAsJsonObject().get("account").getAsJsonObject().get("email").getAsString());
+                Session.setToken(response.get("data").getAsJsonObject().get("access_token").getAsString());
+                notif = "Login Berhasil";
+            }else{
+                notif = response.get("message").getAsString();
+            }
+        } catch (Exception e) {
+            notif = "Error : " + e.getMessage();
+        }
+    return notif;
+    }
+}
