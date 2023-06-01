@@ -7,11 +7,13 @@ import Controllers.Account.User;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 import net.miginfocom.swing.MigLayout;
 
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
@@ -84,8 +86,8 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
                 User user = new User();
                 String notif = user.login(txtEmail.getText(), password);
                 if(notif.equals("Login Berhasil")){
-                    login.setVisible(false);
-                    register.setVisible(false);
+                    Window windowLogin = SwingUtilities.getWindowAncestor(login);
+                    windowLogin.dispose();
                     new Views.Panitia.main.Main().setVisible(true);
                 }else{
                     alert.setText(notif);
