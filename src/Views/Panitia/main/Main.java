@@ -6,6 +6,8 @@ import Views.Panitia.event.EventMenuSelected;
 import Views.Panitia.event.EventShowPopupMenu;
 import Views.Panitia.form.Form1;
 import Views.Panitia.form.Form_Home;
+import Views.Panitia.form.Form_Akun_Panitia;
+import Views.Panitia.form.Form_Akun_Peserta;
 import Views.Panitia.form.MainForm;
 import Views.Panitia.swing.MenuItem;
 import Views.Panitia.swing.PopupMenu;
@@ -42,13 +44,29 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void menuSelected(int menuIndex, int subMenuIndex) {
                 System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
-                if (menuIndex == 0) {
-                    if (subMenuIndex == 0) {
-                        main.showForm(new Form_Home());
-                    } else if (subMenuIndex == 1) {
-                        main.showForm(new Form1());
-                    }
+                switch(menuIndex) {
+                    case 0:
+                        if (subMenuIndex == 0) {
+                            main.showForm(new Form_Home());
+                        } else if (subMenuIndex == 1) {
+                            main.showForm(new Form1());
+                        }
+                        break;
+                    case 1:
+                        if (subMenuIndex == 0) {
+                            main.showForm(new Form_Akun_Panitia());
+                        } else if (subMenuIndex == 1) {
+                            main.showForm(new Form_Akun_Peserta());
+                        }
+                        break;
                 }
+                // if (menuIndex == 0) {
+                //     if (subMenuIndex == 0) {
+                //         main.showForm(new Form_Home());
+                //     } else if (subMenuIndex == 1) {
+                //         main.showForm(new Form1());
+                //     }
+                // }
             }
         });
         menu.addEventShowPopup(new EventShowPopupMenu() {

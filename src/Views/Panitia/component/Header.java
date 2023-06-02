@@ -2,6 +2,8 @@ package Views.Panitia.component;
 
 import java.awt.event.ActionListener;
 
+import Helpers.Session;
+
 public class Header extends javax.swing.JPanel {
 
     public Header() {
@@ -32,7 +34,7 @@ public class Header extends javax.swing.JPanel {
 
         lbUserName.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         lbUserName.setForeground(new java.awt.Color(127, 127, 127));
-        lbUserName.setText("User Name");
+        lbUserName.setText(Session.getUsername());
 
         lbRole.setForeground(new java.awt.Color(127, 127, 127));
         lbRole.setText("Admin");
