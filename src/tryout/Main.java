@@ -9,6 +9,6 @@ public class Main {
         PanitiaApi panitiaApi = new PanitiaApi();
         // panitiaApi.ping();
         // System.out.println(panitiaApi.getUserCommitte("10", "0").getAsJsonObject());
-        System.out.println(panitiaApi.loginEmail("asumantap27@gmail.com", "hubed.om1").getAsJsonObject());
+        System.out.println(panitiaApi.loginEmail("asumantap27@gmail.com", "hubed.com1").getAsJsonObject());
     }
 }
