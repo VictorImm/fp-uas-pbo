@@ -4,17 +4,170 @@
  */
 package Views.TryOut;
 
+import Views.Login.swing.Button;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionListener;
+import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import net.miginfocom.swing.MigLayout;
+
 /**
  *
  * @author User
  */
-public class main extends javax.swing.JFrame {
-
+public class Main extends javax.swing.JFrame {
+    
+    // Ubah isi variabel ini king hubed
+    List<String> jawaban;
+    int questionNumber = 1;
+    String textQuestionOption = "CHANGE TEXT HERE";
+    
     /**
      * Creates new form main
      */
-    public main() {
+    public Main() {
+        this.setUndecorated(true);
+        this.setTitle("TryOut");
         initComponents();
+        initTryout();
+    }
+
+    private void initTryout() {
+        // FIXME: Center JPanel
+        tryoutPanel.setLayout(new MigLayout("wrap", "push[center]30[center]push", "[]40[]10[]10[]10[]"));
+
+        JTextArea question = new JTextArea(textQuestionOption, 2, 5);
+        Button btnA = new Button();
+        Button btnB = new Button();
+        Button btnC = new Button();
+        Button btnD = new Button();
+        Button btnE = new Button();
+        Button btnPrev = new Button();
+        Button btnNext = new Button();
+
+        // Stylings
+        question.setLineWrap(true);
+        question.setWrapStyleWord(true);
+        question.setEditable(false);
+        question.setFont(new Font("sansserif", 1, 12));
+        question.setForeground(new Color(7, 164, 121));
+
+        btnA.setBackground(new Color(0, 0, 255));
+        btnA.setText("OPSI A");
+
+        btnB.setBackground(new Color(0, 0, 255));
+        btnB.setText("OPSI B");
+
+        btnC.setBackground(new Color(0, 0, 255));
+        btnC.setText("OPSI C");
+
+        btnD.setBackground(new Color(0, 0, 255));
+        btnD.setText("OPSI D");
+
+        btnE.setBackground(new Color(0, 0, 255));
+        btnE.setText("OPSI E");
+        
+        btnPrev.setForeground(new Color(0,0,0,0));
+        btnPrev.setSize(100,100);
+        btnPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/TryOut/Icon/back.png")));
+        
+        btnNext.setForeground(new Color(0,0,0,0));
+        btnNext.setSize(100,100);
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/TryOut/Icon/next.png")));
+        
+        // Event Listener
+        btnA.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // Change Selected Color
+                btnA.setBackground(new Color(7, 164, 121));
+                btnB.setBackground(new Color(0, 0, 255));
+                btnC.setBackground(new Color(0, 0, 255));
+                btnD.setBackground(new Color(0, 0, 255));
+                btnE.setBackground(new Color(0, 0, 255));
+
+                // TODO: add value selected listener di sini king hubed
+            }
+        });
+        btnB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // Change Selected Color
+                btnA.setBackground(new Color(0, 0, 255));
+                btnB.setBackground(new Color(7, 164, 121));
+                btnC.setBackground(new Color(0, 0, 255));
+                btnD.setBackground(new Color(0, 0, 255));
+                btnE.setBackground(new Color(0, 0, 255));
+
+                // TODO: add value selected listener di sini king hubed
+            }
+        });
+        btnC.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // Change Selected Color
+                btnA.setBackground(new Color(0, 0, 255));
+                btnB.setBackground(new Color(0, 0, 255));
+                btnC.setBackground(new Color(7, 164, 121));
+                btnD.setBackground(new Color(0, 0, 255));
+                btnE.setBackground(new Color(0, 0, 255));
+
+                // TODO: add value selected listener di sini king hubed
+            }
+        });
+        btnD.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // Change Selected Color
+                btnA.setBackground(new Color(0, 0, 255));
+                btnB.setBackground(new Color(0, 0, 255));
+                btnC.setBackground(new Color(0, 0, 255));
+                btnD.setBackground(new Color(7, 164, 121));
+                btnE.setBackground(new Color(0, 0, 255));
+
+                // TODO: add value selected listener di sini king hubed
+            }
+        });
+        btnE.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // Change Selected Color
+                btnA.setBackground(new Color(0, 0, 255));
+                btnB.setBackground(new Color(0, 0, 255));
+                btnC.setBackground(new Color(0, 0, 255));
+                btnD.setBackground(new Color(0, 0, 255));
+                btnE.setBackground(new Color(7, 164, 121));
+
+                // TODO: add value selected listener di sini king hubed
+            }
+        });
+        btnPrev.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // Event Listener Button Prev
+            }
+        });
+        btnNext.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // Event Listener Button Next
+            }
+        });
+        
+        
+
+        // Render Component
+        tryoutPanel.add(question, "span, w 90%, h 70%");
+        tryoutPanel.add(btnA, "w 40%, h 40");
+        tryoutPanel.add(btnB, "w 40%, h 40");
+        tryoutPanel.add(btnC, "w 40%, h 40");
+        tryoutPanel.add(btnD, "w 40%, h 40");
+        tryoutPanel.add(btnE, "w 40%, h 40, span");
+        tryoutPanel.add(btnPrev, "w 10%, h 10");
+        tryoutPanel.add(btnNext, "w 10%, h 10");
     }
 
     /**
@@ -26,64 +179,34 @@ public class main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        tryoutPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("OPSI A");
-
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("OPSI B");
-
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("OPSI C");
-
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setText("OPSI D");
-
-        jButton1.setText("Next");
+        javax.swing.GroupLayout tryoutPanelLayout = new javax.swing.GroupLayout(tryoutPanel);
+        tryoutPanel.setLayout(tryoutPanelLayout);
+        tryoutPanelLayout.setHorizontalGroup(
+            tryoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 664, Short.MAX_VALUE)
+        );
+        tryoutPanelLayout.setVerticalGroup(
+            tryoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 433, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(53, 53, 53))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addComponent(tryoutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(39, 39, 39))
+                .addComponent(tryoutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,6 +216,7 @@ public class main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -106,30 +230,29 @@ public class main extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new main().setVisible(true);
+                Main frame = new Main();
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+                frame.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JPanel tryoutPanel;
     // End of variables declaration//GEN-END:variables
 }
