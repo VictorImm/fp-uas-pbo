@@ -6,6 +6,7 @@ import Views.Login.swing.MyTextField;
 import Controllers.Account.User;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionListener;
@@ -85,11 +86,21 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
                 String password = new String(txtPass.getPassword());
                 User user = new User();
                 String notif = user.login(txtEmail.getText(), password);
-                if(notif.equals("Login Berhasil")){
+                if (notif.equals("Login Berhasil")) {
                     Window windowLogin = SwingUtilities.getWindowAncestor(login);
                     windowLogin.dispose();
-                    new Views.Panitia.main.Main().setVisible(true);
-                }else{
+
+                    // Jika admin direct ke dashboard admin
+                    int role = user.getRole();
+                    if (role == 9) {
+                        new Views.Panitia.main.Main().setVisible(true);
+                        // Jika peserta direct ke page tryout
+                    } else if (role == 1) {
+                        EventQueue.invokeLater(() -> {
+                            Views.TryOut.Main.main(new String[]{});
+                        });
+                    }
+                } else {
                     alert.setText(notif);
                 }
             }

@@ -19,12 +19,12 @@ import net.miginfocom.swing.MigLayout;
  * @author User
  */
 public class Main extends javax.swing.JFrame {
-    
+
     // Ubah isi variabel ini king hubed
     List<String> jawaban;
     int questionNumber = 1;
     String textQuestionOption = "CHANGE TEXT HERE";
-    
+
     /**
      * Creates new form main
      */
@@ -69,15 +69,15 @@ public class Main extends javax.swing.JFrame {
 
         btnE.setBackground(new Color(0, 0, 255));
         btnE.setText("OPSI E");
-        
-        btnPrev.setForeground(new Color(0,0,0,0));
-        btnPrev.setSize(100,100);
+
+        btnPrev.setForeground(new Color(0, 0, 0, 0));
+        btnPrev.setSize(100, 100);
         btnPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/TryOut/Icon/back.png")));
-        
-        btnNext.setForeground(new Color(0,0,0,0));
-        btnNext.setSize(100,100);
+
+        btnNext.setForeground(new Color(0, 0, 0, 0));
+        btnNext.setSize(100, 100);
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/TryOut/Icon/next.png")));
-        
+
         // Event Listener
         btnA.addActionListener(new ActionListener() {
             @Override
@@ -156,8 +156,6 @@ public class Main extends javax.swing.JFrame {
                 // Event Listener Button Next
             }
         });
-        
-        
 
         // Render Component
         tryoutPanel.add(question, "span, w 90%, h 70%");
@@ -216,7 +214,7 @@ public class Main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -240,13 +238,12 @@ public class Main extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Main frame = new Main();
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 frame.setVisible(true);
             }
         });
