@@ -6,10 +6,12 @@ package Views.TryOut;
 
 import Views.Login.swing.Button;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import net.miginfocom.swing.MigLayout;
@@ -37,9 +39,15 @@ public class Main extends javax.swing.JFrame {
 
     private void initTryout() {
         // FIXME: Center JPanel
-        tryoutPanel.setLayout(new MigLayout("wrap", "push[center]30[center]push", "[]40[]10[]10[]10[]"));
+        tryoutPanel.setLayout(
+                new MigLayout(
+                        "wrap",
+                        "push[center]30[center]push",
+                        "[center]40[]10[]10[]10[]"
+                )
+        );
 
-        JTextArea question = new JTextArea(textQuestionOption, 2, 5);
+        JTextArea question = new JTextArea(textQuestionOption, 1, 2);
         Button btnA = new Button();
         Button btnB = new Button();
         Button btnC = new Button();
@@ -47,6 +55,8 @@ public class Main extends javax.swing.JFrame {
         Button btnE = new Button();
         Button btnPrev = new Button();
         Button btnNext = new Button();
+        
+        Button btnFinish = new Button();
 
         // Stylings
         question.setLineWrap(true);
@@ -55,20 +65,15 @@ public class Main extends javax.swing.JFrame {
         question.setFont(new Font("sansserif", 1, 12));
         question.setForeground(new Color(7, 164, 121));
 
-        btnA.setBackground(new Color(0, 0, 255));
-        btnA.setText("OPSI A");
+        btnA.setText("A");
 
-        btnB.setBackground(new Color(0, 0, 255));
-        btnB.setText("OPSI B");
+        btnB.setText("B");
 
-        btnC.setBackground(new Color(0, 0, 255));
-        btnC.setText("OPSI C");
+        btnC.setText("C");
 
-        btnD.setBackground(new Color(0, 0, 255));
-        btnD.setText("OPSI D");
+        btnD.setText("D");
 
-        btnE.setBackground(new Color(0, 0, 255));
-        btnE.setText("OPSI E");
+        btnE.setText("E");
 
         btnPrev.setForeground(new Color(0, 0, 0, 0));
         btnPrev.setSize(100, 100);
@@ -77,6 +82,9 @@ public class Main extends javax.swing.JFrame {
         btnNext.setForeground(new Color(0, 0, 0, 0));
         btnNext.setSize(100, 100);
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/TryOut/Icon/next.png")));
+        
+        btnFinish.setForeground(new Color(0, 0, 0, 255));
+        btnFinish.setText("Finish");
 
         // Event Listener
         btnA.addActionListener(new ActionListener() {
@@ -84,10 +92,10 @@ public class Main extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 // Change Selected Color
                 btnA.setBackground(new Color(7, 164, 121));
-                btnB.setBackground(new Color(0, 0, 255));
-                btnC.setBackground(new Color(0, 0, 255));
-                btnD.setBackground(new Color(0, 0, 255));
-                btnE.setBackground(new Color(0, 0, 255));
+                btnB.setBackground(new Color(255, 255, 255));
+                btnC.setBackground(new Color(255, 255, 255));
+                btnD.setBackground(new Color(255, 255, 255));
+                btnE.setBackground(new Color(255, 255, 255));
 
                 // TODO: add value selected listener di sini king hubed
             }
@@ -96,11 +104,11 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 // Change Selected Color
-                btnA.setBackground(new Color(0, 0, 255));
+                btnA.setBackground(new Color(255, 255, 255));
                 btnB.setBackground(new Color(7, 164, 121));
-                btnC.setBackground(new Color(0, 0, 255));
-                btnD.setBackground(new Color(0, 0, 255));
-                btnE.setBackground(new Color(0, 0, 255));
+                btnC.setBackground(new Color(255, 255, 255));
+                btnD.setBackground(new Color(255, 255, 255));
+                btnE.setBackground(new Color(255, 255, 255));
 
                 // TODO: add value selected listener di sini king hubed
             }
@@ -109,11 +117,11 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 // Change Selected Color
-                btnA.setBackground(new Color(0, 0, 255));
-                btnB.setBackground(new Color(0, 0, 255));
+                btnA.setBackground(new Color(255, 255, 255));
+                btnB.setBackground(new Color(255, 255, 255));
                 btnC.setBackground(new Color(7, 164, 121));
-                btnD.setBackground(new Color(0, 0, 255));
-                btnE.setBackground(new Color(0, 0, 255));
+                btnD.setBackground(new Color(255, 255, 255));
+                btnE.setBackground(new Color(255, 255, 255));
 
                 // TODO: add value selected listener di sini king hubed
             }
@@ -122,11 +130,11 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 // Change Selected Color
-                btnA.setBackground(new Color(0, 0, 255));
-                btnB.setBackground(new Color(0, 0, 255));
-                btnC.setBackground(new Color(0, 0, 255));
+                btnA.setBackground(new Color(255, 255, 255));
+                btnB.setBackground(new Color(255, 255, 255));
+                btnC.setBackground(new Color(255, 255, 255));
                 btnD.setBackground(new Color(7, 164, 121));
-                btnE.setBackground(new Color(0, 0, 255));
+                btnE.setBackground(new Color(255, 255, 255));
 
                 // TODO: add value selected listener di sini king hubed
             }
@@ -135,10 +143,10 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 // Change Selected Color
-                btnA.setBackground(new Color(0, 0, 255));
-                btnB.setBackground(new Color(0, 0, 255));
-                btnC.setBackground(new Color(0, 0, 255));
-                btnD.setBackground(new Color(0, 0, 255));
+                btnA.setBackground(new Color(255, 255, 255));
+                btnB.setBackground(new Color(255, 255, 255));
+                btnC.setBackground(new Color(255, 255, 255));
+                btnD.setBackground(new Color(255, 255, 255));
                 btnE.setBackground(new Color(7, 164, 121));
 
                 // TODO: add value selected listener di sini king hubed
@@ -156,16 +164,27 @@ public class Main extends javax.swing.JFrame {
                 // Event Listener Button Next
             }
         });
+        
+        // TODO: submit file
+        btnNext.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // Event Listener Button Finish
+            }
+        });
 
         // Render Component
         tryoutPanel.add(question, "span, w 90%, h 70%");
-        tryoutPanel.add(btnA, "w 40%, h 40");
-        tryoutPanel.add(btnB, "w 40%, h 40");
-        tryoutPanel.add(btnC, "w 40%, h 40");
-        tryoutPanel.add(btnD, "w 40%, h 40");
-        tryoutPanel.add(btnE, "w 40%, h 40, span");
+        tryoutPanel.add(btnA, "w 40%, h 20");
+        tryoutPanel.add(btnB, "w 40%, h 20");
+        tryoutPanel.add(btnC, "w 40%, h 20");
+        tryoutPanel.add(btnD, "w 40%, h 20");
+        tryoutPanel.add(btnE, "w 40%, h 20, span");
         tryoutPanel.add(btnPrev, "w 10%, h 10");
-        tryoutPanel.add(btnNext, "w 10%, h 10");
+        
+        // TODO: len(soal) == max ? show_btnFinish : show_btnNext
+//        tryoutPanel.add(btnNext, "w 10%, h 10");
+         tryoutPanel.add(btnFinish, "w 20%, h 10");
     }
 
     /**
@@ -177,7 +196,10 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         tryoutPanel = new javax.swing.JPanel();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -189,7 +211,7 @@ public class Main extends javax.swing.JFrame {
         );
         tryoutPanelLayout.setVerticalGroup(
             tryoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 433, Short.MAX_VALUE)
+            .addGap(0, 456, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -202,9 +224,7 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tryoutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(tryoutPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -245,11 +265,13 @@ public class Main extends javax.swing.JFrame {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 frame.setVisible(true);
+                frame.setLayout(new FlowLayout(FlowLayout.CENTER));
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel tryoutPanel;
     // End of variables declaration//GEN-END:variables
 }
