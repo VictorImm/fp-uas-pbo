@@ -1,16 +1,15 @@
 package Views.treot.model;
 
-import Views.treot.model.*;
 import javax.swing.Icon;
 
-public class ModelMenu1 {
+public class ModelMenu {
 
-    public Icon getIcon() {
-        return icon;
+    public String getId() {
+        return id;
     }
 
-    public void setIcon(Icon icon) {
-        this.icon = icon;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMenuName() {
@@ -29,16 +28,15 @@ public class ModelMenu1 {
         this.subMenu = subMenu;
     }
 
-    public ModelMenu1(Icon icon, String menuName, String... subMenu) {
-        this.icon = icon;
+    public ModelMenu(String menuName, String... subMenu) {
         this.menuName = menuName;
         this.subMenu = subMenu;
     }
 
-    public ModelMenu1() {
+    public ModelMenu() {
     }
 
-    private Icon icon;
+    private String id;
     private String menuName;
     private String subMenu[];
 }

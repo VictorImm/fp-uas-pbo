@@ -1,9 +1,8 @@
 package Views.treot.swing;
 
-import Views.treot.swing.*;
 import Views.treot.event.EventMenu;
 import Views.treot.event.EventMenuSelected;
-import Views.treot.model.ModelMenu1;
+import Views.treot.model.ModelMenu;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -13,9 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import net.miginfocom.swing.MigLayout;
 
-public class MenuItem1 extends javax.swing.JPanel {
+public class MenuItem extends javax.swing.JPanel {
 
-    public ModelMenu1 getMenu() {
+    public ModelMenu getMenu() {
         return menu;
     }
 
@@ -44,24 +43,24 @@ public class MenuItem1 extends javax.swing.JPanel {
     }
 
     private float alpha;
-    private ModelMenu1 menu;
+    private ModelMenu menu;
     private boolean open;
     private EventMenuSelected eventSelected;
     private int index;
 
-    public MenuItem1(ModelMenu1 menu, EventMenu event, EventMenuSelected eventSelected, int index) {
+    public MenuItem(ModelMenu menu, EventMenu event, EventMenuSelected eventSelected, int index) {
         initComponents();
         this.menu = menu;
         this.eventSelected = eventSelected;
         this.index = index;
         setOpaque(false);
-        setLayout(new MigLayout("wrap, fillx, insets 0", "[fill]", "[fill, 40!]0[fill, 35!]"));
-        MenuButton firstItem = new MenuButton(menu.getIcon(), "      " + menu.getMenuName());
+        setLayout(new MigLayout("wrap, fillx, insets 0", "[fill]", "[fill, 60!]0[fill, 35!]"));
+        MenuButton firstItem = new MenuButton(menu.getMenuName());
         firstItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if (menu.getSubMenu().length > 0) {
-                    if (event.menuPressed(MenuItem1.this, !open)) {
+                    if (event.menuPressed(MenuItem.this, !open)) {
                         open = !open;
                     }
                 }
@@ -109,11 +108,11 @@ public class MenuItem1 extends javax.swing.JPanel {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
         g2.fillRect(0, 2, width, 38);
         g2.setComposite(AlphaComposite.SrcOver);
-        g2.fillRect(0, 40, width, height - 40);
+        g2.fillRect(0, 60, width, height - 60);
         g2.setColor(new Color(100, 100, 100));
-        g2.drawLine(30, 40, 30, height - 17);
+        g2.drawLine(30, 60, 30, height - 17);
         for (int i = 0; i < menu.getSubMenu().length; i++) {
-            int y = ((i + 1) * 35 + 40) - 17;
+            int y = ((i + 1) * 35 + 60) - 17;
             g2.drawLine(30, y, 38, y);
         }
         if (menu.getSubMenu().length > 0) {
