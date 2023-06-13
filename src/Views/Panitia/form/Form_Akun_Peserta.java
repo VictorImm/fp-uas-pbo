@@ -1,5 +1,6 @@
 package Views.Panitia.form;
 
+import Helpers.Api;
 import Views.Panitia.dialog.Message;
 import Views.Panitia.main.Main;
 import Views.Panitia.model.ModelCard1;
@@ -49,7 +50,7 @@ public class Form_Akun_Peserta extends javax.swing.JPanel {
             }
         };
         try{
-            JsonObject respon = new Libraries.PanitiaApi().getUserParticipant("0", "0").getAsJsonObject();
+            JsonObject respon = new Api().request("GET", "/user/participant");
             int no = 1;
             for(JsonElement data : respon.get("data").getAsJsonObject().get("users").getAsJsonArray()){
                 String status = data.getAsJsonObject().get("status").getAsInt() == 1 ? "aktif" : "tidak aktif";

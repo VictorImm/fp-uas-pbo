@@ -1,5 +1,7 @@
 package Views.Panitia.form;
 
+import Helpers.Api;
+import Libraries.PanitiaApi;
 import Views.Panitia.dialog.Message;
 import Views.Panitia.main.Main;
 import Views.Panitia.model.ModelCard1;
@@ -55,8 +57,9 @@ public class Form_Akun_Panitia extends javax.swing.JPanel {
             }
         };
         try{
-            JsonObject respon = new Libraries.PanitiaApi().getUserCommitte("0", "0").getAsJsonObject();
+            JsonObject respon = new Api().request("GET", "/user/committe");
             int no = 1;
+            System.out.println(respon);
             for(JsonElement data : respon.get("data").getAsJsonObject().get("users").getAsJsonArray()){
                 String status = data.getAsJsonObject().get("status").getAsInt() == 1 ? "aktif" : "tidak aktif";
                 table1.addRow(new ModelUser(no, data.getAsJsonObject().get("name").getAsString(), data.getAsJsonObject().get("email").getAsString(), status).toRowTable(eventActionUser));

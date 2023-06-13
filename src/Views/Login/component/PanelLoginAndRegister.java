@@ -4,6 +4,7 @@ import Views.Login.swing.Button;
 import Views.Login.swing.MyPasswordField;
 import Views.Login.swing.MyTextField;
 import Controllers.Account.User;
+import Helpers.Session;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
