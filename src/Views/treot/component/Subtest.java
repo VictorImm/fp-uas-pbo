@@ -195,7 +195,7 @@ public class Subtest extends javax.swing.JPanel {
 
     private void button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button6ActionPerformed
         // TODO add your handling code here:
-        ModelSubtest.setSubtestID(dataID.get(5));
+        ModelSubtest.setSubtestID(dataID.get(4));
         // System.out.println(dataID.get(0));
         Main main = new Main();
         main.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -205,7 +205,7 @@ public class Subtest extends javax.swing.JPanel {
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
         // TODO add your handling code here:
-        ModelSubtest.setSubtestID(dataID.get(2));
+        ModelSubtest.setSubtestID(dataID.get(1));
         // System.out.println(dataID.get(0));
         Main main = new Main();
         main.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -215,7 +215,7 @@ public class Subtest extends javax.swing.JPanel {
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         // TODO add your handling code here:
-        ModelSubtest.setSubtestID(dataID.get(3));
+        ModelSubtest.setSubtestID(dataID.get(2));
         // System.out.println(dataID.get(0));
         Main main = new Main();
         main.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -225,7 +225,7 @@ public class Subtest extends javax.swing.JPanel {
 
     private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
         // TODO add your handling code here:
-        ModelSubtest.setSubtestID(dataID.get(4));
+        ModelSubtest.setSubtestID(dataID.get(3));
         // System.out.println(dataID.get(0));
         Main main = new Main();
         main.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -235,7 +235,7 @@ public class Subtest extends javax.swing.JPanel {
 
     private void button8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button8ActionPerformed
         // TODO add your handling code here:
-        ModelSubtest.setSubtestID(dataID.get(6));
+        ModelSubtest.setSubtestID(dataID.get(5));
         // System.out.println(dataID.get(0));
         Main main = new Main();
         main.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -246,7 +246,7 @@ public class Subtest extends javax.swing.JPanel {
 
     private void button7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button7ActionPerformed
         // TODO add your handling code here:
-        ModelSubtest.setSubtestID(dataID.get(7));
+        ModelSubtest.setSubtestID(dataID.get(6));
         // System.out.println(dataID.get(0));
         Main main = new Main();
         main.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
