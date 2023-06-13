@@ -4,14 +4,17 @@
  */
 package Views.TryOut;
 
+import Libraries.PanitiaApi;
 import Views.Login.swing.Button;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
-import java.util.List;
+import java.util.Arrays;
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -21,9 +24,11 @@ import net.miginfocom.swing.MigLayout;
 public class Main extends javax.swing.JFrame {
 
     // Ubah isi variabel ini king hubed
-    List<String> jawaban;
-    int questionNumber = 1;
-    String textQuestionOption = "CHANGE TEXT HERE";
+    private String[] jawaban = new String[100];
+    private JsonArray questions;
+    private int questionNumber = 0;
+    private String judulSoal;
+    private String textQuestion = "TextDisplay";
 
     /**
      * Creates new form main
@@ -36,136 +41,153 @@ public class Main extends javax.swing.JFrame {
     }
 
     private void initTryout() {
-        // FIXME: Center JPanel
-        tryoutPanel.setLayout(new MigLayout("wrap", "push[center]30[center]push", "[]40[]10[]10[]10[]"));
 
-        JTextArea question = new JTextArea(textQuestionOption, 2, 5);
-        Button btnA = new Button();
-        Button btnB = new Button();
-        Button btnC = new Button();
-        Button btnD = new Button();
-        Button btnE = new Button();
-        Button btnPrev = new Button();
-        Button btnNext = new Button();
+        // Get Soal
+        try {
+            PanitiaApi panitiaApi = new PanitiaApi();
+            JsonObject response = panitiaApi.getQuestionsBySubtestId("25");
+            judulSoal = response.get("data").getAsJsonObject().get("subtest").getAsJsonObject().get("title").getAsString();
+            questions = response.get("data").getAsJsonObject().get("questions").getAsJsonArray();
 
-        // Stylings
-        question.setLineWrap(true);
-        question.setWrapStyleWord(true);
+            // Update soal
+            updateQuestion();
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+
+        tryoutPanel.setLayout(
+                new MigLayout(
+                        "wrap",
+                        "push[center]30[center]push",
+                        "[center]40[]10[]10[]10[]"
+                )
+        );
+
+        JTextPane question = new JTextPane();
         question.setEditable(false);
         question.setFont(new Font("sansserif", 1, 12));
         question.setForeground(new Color(7, 164, 121));
+        question.setContentType("text/html");
+        question.setText(textQuestion);
 
-        btnA.setBackground(new Color(0, 0, 255));
-        btnA.setText("OPSI A");
+        Button[] buttons = new Button[5]; // Create an array of buttons
 
-        btnB.setBackground(new Color(0, 0, 255));
-        btnB.setText("OPSI B");
+        // Create buttons and set common stylings
+        for (int i = 0; i < buttons.length; i++) {
+            buttons[i] = new Button();
+            buttons[i].setBackground(new Color(0, 0, 255));
+            buttons[i].setFont(new Font("sansserif", 1, 12));
+            buttons[i].setForeground(Color.WHITE);
+        }
 
-        btnC.setBackground(new Color(0, 0, 255));
-        btnC.setText("OPSI C");
-
-        btnD.setBackground(new Color(0, 0, 255));
-        btnD.setText("OPSI D");
-
-        btnE.setBackground(new Color(0, 0, 255));
-        btnE.setText("OPSI E");
-
-        btnPrev.setForeground(new Color(0, 0, 0, 0));
-        btnPrev.setSize(100, 100);
-        btnPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/TryOut/Icon/back.png")));
-
-        btnNext.setForeground(new Color(0, 0, 0, 0));
-        btnNext.setSize(100, 100);
-        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/TryOut/Icon/next.png")));
+        // Set button text
+        buttons[0].setText("OPSI A");
+        buttons[1].setText("OPSI B");
+        buttons[2].setText("OPSI C");
+        buttons[3].setText("OPSI D");
+        buttons[4].setText("OPSI E");
 
         // Event Listener
-        btnA.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // Change Selected Color
-                btnA.setBackground(new Color(7, 164, 121));
-                btnB.setBackground(new Color(0, 0, 255));
-                btnC.setBackground(new Color(0, 0, 255));
-                btnD.setBackground(new Color(0, 0, 255));
-                btnE.setBackground(new Color(0, 0, 255));
+        for (int i = 0; i < buttons.length; i++) {
+            final int index = i; // Create a final variable for the ActionListener
 
-                // TODO: add value selected listener di sini king hubed
-            }
-        });
-        btnB.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // Change Selected Color
-                btnA.setBackground(new Color(0, 0, 255));
-                btnB.setBackground(new Color(7, 164, 121));
-                btnC.setBackground(new Color(0, 0, 255));
-                btnD.setBackground(new Color(0, 0, 255));
-                btnE.setBackground(new Color(0, 0, 255));
+            buttons[i].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    // Change Selected Color
+                    for (int j = 0; j < buttons.length; j++) {
+                        buttons[j].setBackground(j == index ? new Color(7, 164, 121) : new Color(0, 0, 255));
+                    }
 
-                // TODO: add value selected listener di sini king hubed
-            }
-        });
-        btnC.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // Change Selected Color
-                btnA.setBackground(new Color(0, 0, 255));
-                btnB.setBackground(new Color(0, 0, 255));
-                btnC.setBackground(new Color(7, 164, 121));
-                btnD.setBackground(new Color(0, 0, 255));
-                btnE.setBackground(new Color(0, 0, 255));
+                    // Set Jawaban
+                    jawaban[questionNumber] = buttons[index].getText();
+                }
+            });
+        }
 
-                // TODO: add value selected listener di sini king hubed
-            }
-        });
-        btnD.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // Change Selected Color
-                btnA.setBackground(new Color(0, 0, 255));
-                btnB.setBackground(new Color(0, 0, 255));
-                btnC.setBackground(new Color(0, 0, 255));
-                btnD.setBackground(new Color(7, 164, 121));
-                btnE.setBackground(new Color(0, 0, 255));
+        Button btnPrev = createNavigationButton("/Views/TryOut/Icon/back.png");
+        Button btnNext = createNavigationButton("/Views/TryOut/Icon/next.png");
+        Button btnFinish = new Button();
+        btnFinish.setForeground(new Color(0, 0, 0, 255));
+        btnFinish.setBackground(Color.GREEN);
+        btnFinish.setText("Finish");
 
-                // TODO: add value selected listener di sini king hubed
-            }
-        });
-        btnE.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // Change Selected Color
-                btnA.setBackground(new Color(0, 0, 255));
-                btnB.setBackground(new Color(0, 0, 255));
-                btnC.setBackground(new Color(0, 0, 255));
-                btnD.setBackground(new Color(0, 0, 255));
-                btnE.setBackground(new Color(7, 164, 121));
-
-                // TODO: add value selected listener di sini king hubed
-            }
-        });
         btnPrev.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 // Event Listener Button Prev
+                if (questionNumber > 0) {
+                    questionNumber--;
+                    updateQuestion();
+                    question.setText(textQuestion);
+                }
+
+                // Change finish button to next button
+                if (questionNumber == questions.size() - 2) {
+                    tryoutPanel.remove(btnFinish);
+                    tryoutPanel.add(btnNext, "w 10%, h 10");
+                }
+
+                // Reset answer option color
+                for (Button button : buttons) {
+                    button.setBackground(new Color(0, 0, 255));
+                }
             }
         });
         btnNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 // Event Listener Button Next
+                if (questionNumber < questions.size()) {
+                    questionNumber++;
+                    updateQuestion();
+                    question.setText(textQuestion);
+
+                }
+
+                // Show finish button
+                if (questionNumber == questions.size() - 1) {
+                    tryoutPanel.remove(btnNext);
+                    tryoutPanel.add(btnFinish, "w 10%, h 10");
+                }
+
+                // Reset answer option color
+                for (Button button : buttons) {
+                    button.setBackground(new Color(0, 0, 255));
+                }
             }
         });
 
         // Render Component
         tryoutPanel.add(question, "span, w 90%, h 70%");
-        tryoutPanel.add(btnA, "w 40%, h 40");
-        tryoutPanel.add(btnB, "w 40%, h 40");
-        tryoutPanel.add(btnC, "w 40%, h 40");
-        tryoutPanel.add(btnD, "w 40%, h 40");
-        tryoutPanel.add(btnE, "w 40%, h 40, span");
+        int btnIndex = 0;
+        for (Button button : buttons) {
+            if (btnIndex == 4) {
+                tryoutPanel.add(button, "w 40%, h 40, span");
+            } else {
+                tryoutPanel.add(button, "w 40%, h 40");
+            }
+
+            btnIndex++;
+        }
+
         tryoutPanel.add(btnPrev, "w 10%, h 10");
         tryoutPanel.add(btnNext, "w 10%, h 10");
+    }
+
+    private Button createNavigationButton(String imagePath) {
+        Button button = new Button();
+        button.setForeground(new Color(0, 0, 0, 0));
+        button.setSize(100, 100);
+        button.setIcon(new javax.swing.ImageIcon(getClass().getResource(imagePath)));
+        return button;
+    }
+
+    private void updateQuestion() {
+        this.textQuestion = "<html><body><div style='height: 300px; width: 1000px;'>";
+        this.textQuestion += questions.get(questionNumber).getAsJsonObject().get("question_text").getAsString();
+        this.textQuestion += "</div></body></html>";
     }
 
     /**
@@ -189,7 +211,7 @@ public class Main extends javax.swing.JFrame {
         );
         tryoutPanelLayout.setVerticalGroup(
             tryoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 433, Short.MAX_VALUE)
+            .addGap(0, 456, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -202,9 +224,7 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tryoutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(tryoutPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -245,6 +265,7 @@ public class Main extends javax.swing.JFrame {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 frame.setVisible(true);
+                frame.setLayout(new FlowLayout(FlowLayout.CENTER));
             }
         });
     }
