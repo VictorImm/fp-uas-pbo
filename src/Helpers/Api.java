@@ -17,7 +17,10 @@ public class Api {
         HttpURLConnection conn = (HttpURLConnection) finalUrl.openConnection();
         byte[] DataBytes = HttpQueryBuilder.buildQuery(requestBody);
         conn.addRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-
+        // cek apakah user sudah login
+        if(Session.isLoggedIn()) {
+            conn.setRequestProperty("Authorization", "Bearer " + Session.getToken());
+        }
         // Memeriksa method request
         switch (method) {
             case "POST":
@@ -46,11 +49,48 @@ public class Api {
                 conn.setRequestMethod("GET");
                 break;
         }
+        
+        // Membaca response dari API
+        BufferedReader reader;
+        if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } else {
+            reader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        }
 
+        String line;
+        StringBuilder response = new StringBuilder();
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
+        }
+        reader.close();
+
+        // Konvert response ke JsonObject
+        JsonElement jsonElement = JsonParser.parseString(response.toString());
+        JsonObject jsonObject = jsonElement.getAsJsonObject();
+        conn.disconnect();
+        
+        return jsonObject;
+    }
+
+    public JsonObject request(String endpoint, Map<String, Object> requestBody) throws Exception{
+        String fullUrl = API_URL + endpoint;
+        URL finalUrl = new URL(fullUrl);
+        HttpURLConnection conn = (HttpURLConnection) finalUrl.openConnection();
+        String postDataJson = HttpQueryBuilder.toJson(requestBody);
+        // byte[] DataBytes = HttpQueryBuilder.buildQuery(requestBody);
+        conn.addRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         // cek apakah user sudah login
         if(Session.isLoggedIn()) {
             conn.setRequestProperty("Authorization", "Bearer " + Session.getToken());
         }
+        conn.setRequestMethod("PUT");
+        // conn.addRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        conn.setDoOutput(true);
+        try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
+            wr.write(postDataJson.getBytes());
+        }
+                
         
         // Membaca response dari API
         BufferedReader reader;
@@ -87,13 +127,6 @@ public class Api {
             conn.setRequestProperty("Authorization", "Bearer " + Session.getToken());
         }
 
-        // Memeriksa kode respons HTTP
-        // int responseCode = conn.getResponseCode();
-        // if(responseCode == 0){
-        //     throw new Exception("Server Unavaible : API_URL");
-        // }
-        // System.out.println("Response Code: " + responseCode);
-
         // Membaca response dari API
         BufferedReader reader;
         if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -121,6 +154,24 @@ public class Api {
         try {
             
             JsonObject jsonObject = request(method, endpoint, requestBody);
+            if(jsonObject.get("ok").getAsBoolean()){
+                return jsonObject;
+            }else{
+                if(jsonObject.get("message").getAsString().equals("Expired token")){
+                    Session.destroySession();
+                    throw new Exception("Session Expired");
+                }
+                return jsonObject;
+            }
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public JsonObject builder(String endpoint, Map<String, Object> requestBody) throws Exception{
+        try {
+            
+            JsonObject jsonObject = request(endpoint, requestBody);
             if(jsonObject.get("ok").getAsBoolean()){
                 return jsonObject;
             }else{

@@ -36,6 +36,23 @@ public class HttpQueryBuilder {
             return postDataBytes;
     }
 
+    public static String toJson(Map<String, Object> data) throws Exception {
+        StringBuilder json = new StringBuilder("{");
+        for (Map.Entry<String, Object> entry : data.entrySet()) {
+            if (json.length() > 1) {
+                json.append(",");
+            }
+            json.append("\"").append(entry.getKey()).append("\":");
+            if (entry.getValue() instanceof String) {
+                json.append("\"").append(entry.getValue()).append("\"");
+            } else {
+                json.append(entry.getValue());
+            }
+        }
+        json.append("}");
+        return json.toString();
+    }
+
     // public static void main(String[] args) {
     //     String url = "http://example.com/api";
     //     Map<String, String> parameters = new HashMap<>();
