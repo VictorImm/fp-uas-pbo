@@ -57,7 +57,6 @@ public class PanitiaApi {
     }
 
     // Tryouts
-
     public JsonObject getTryouts() throws Exception{
         return api.builder("GET", "/exam");
     }

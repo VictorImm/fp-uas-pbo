@@ -1,19 +1,11 @@
 package Views.Panitia.form;
 
 import Helpers.Api;
-import Libraries.PanitiaApi;
 import Views.Panitia.dialog.Message;
 import Views.Panitia.main.Main;
 import Views.Panitia.model.ModelCard1;
 import Views.Panitia.model.ModelUser;
-import Views.Panitia.model.ModelEditUser;
-// import Views.Panitia.form.Form_Edit_Panitia;
-//import Views.Panitia.swing.icon.GoogleMaterialDesignIcons;
-//import Views.Panitia.swing.icon.IconFontSwing;
 import Views.Panitia.swing.table.EventActionUser;
-//import java.awt.Color;
-//import javax.swing.Icon;
-// import javax.swing.ImageIcon;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -59,7 +51,6 @@ public class Form_Akun_Panitia extends javax.swing.JPanel {
         try{
             JsonObject respon = new Api().request("GET", "/user/committe");
             int no = 1;
-            System.out.println(respon);
             for(JsonElement data : respon.get("data").getAsJsonObject().get("users").getAsJsonArray()){
                 String status = data.getAsJsonObject().get("status").getAsInt() == 1 ? "aktif" : "tidak aktif";
                 table1.addRow(new ModelUser(no, data.getAsJsonObject().get("name").getAsString(), data.getAsJsonObject().get("email").getAsString(), status).toRowTable(eventActionUser));

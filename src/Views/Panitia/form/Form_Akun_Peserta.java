@@ -5,13 +5,7 @@ import Views.Panitia.dialog.Message;
 import Views.Panitia.main.Main;
 import Views.Panitia.model.ModelCard1;
 import Views.Panitia.model.ModelUser;
-//import Views.Panitia.swing.icon.GoogleMaterialDesignIcons;
-//import Views.Panitia.swing.icon.IconFontSwing;
 import Views.Panitia.swing.table.EventActionUser;
-//import java.awt.Color;
-//import javax.swing.Icon;
-// import javax.swing.ImageIcon;
-
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 

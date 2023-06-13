@@ -3,10 +3,7 @@ package Controllers.Account;
 import Controllers.BaseController;
 import Helpers.Api;
 import Helpers.Session;
-
 import com.google.gson.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class User extends BaseController {
 
