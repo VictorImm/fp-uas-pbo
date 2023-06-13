@@ -56,7 +56,7 @@ public class Menu extends javax.swing.JPanel {
     public void initMenuItem() {
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/Views/Panitia/icon/1.png")), "Dashboard", "Home", "Buttons", "Cards", "Tabs", "Accordions", "Modals"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/Views/Panitia/icon/6.png")), "Akun", "Akun Panitia", "Akun Peserta"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/Views/Panitia/icon/2.png")), "Charts", "Morris", "Flot", "Line"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/Views/Panitia/icon/2.png")), "Charts"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/Views/Panitia/icon/3.png")), "Report", "Income", "Expense", "Profit"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/Views/Panitia/icon/4.png")), "Message", "Sender", "Inbox", "User"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/Views/Panitia/icon/5.png")), "Staff", "Sender", "Inbox", "User"));
@@ -116,7 +116,6 @@ public class Menu extends javax.swing.JPanel {
 
         sp.setBorder(null);
         sp.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        sp.setViewportBorder(null);
 
         panel.setOpaque(false);
 
@@ -145,7 +144,7 @@ public class Menu extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(profile1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sp, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
+                .addComponent(sp))
         );
     }// </editor-fold>//GEN-END:initComponents
 

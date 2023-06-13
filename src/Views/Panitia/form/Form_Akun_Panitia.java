@@ -4,6 +4,8 @@ import Views.Panitia.dialog.Message;
 import Views.Panitia.main.Main;
 import Views.Panitia.model.ModelCard1;
 import Views.Panitia.model.ModelUser;
+import Views.Panitia.model.ModelEditUser;
+// import Views.Panitia.form.Form_Edit_Panitia;
 //import Views.Panitia.swing.icon.GoogleMaterialDesignIcons;
 //import Views.Panitia.swing.icon.IconFontSwing;
 import Views.Panitia.swing.table.EventActionUser;
@@ -42,6 +44,10 @@ public class Form_Akun_Panitia extends javax.swing.JPanel {
             @Override
             public void update(ModelUser user) {
                 if (showMessage("Update user : " + user.getName())) {
+                    // ModelEditUser edit = new ModelEditUser(user.getNo());
+                    Main main = new Views.Panitia.main.Main();
+                    main.setFormEditPanitia(new Form_Edit_Panitia(String.valueOf(user.getNo())));
+                    main.setVisible(true);
                     System.out.println("User click OK");
                 } else {
                     System.out.println("User click Cancel");

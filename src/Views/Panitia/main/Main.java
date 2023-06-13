@@ -8,6 +8,7 @@ import Views.Panitia.form.Form1;
 import Views.Panitia.form.Form_Home;
 import Views.Panitia.form.Form_Akun_Panitia;
 import Views.Panitia.form.Form_Akun_Peserta;
+import Views.Panitia.form.Form_Edit_Panitia;
 import Views.Panitia.form.MainForm;
 import Views.Panitia.swing.MenuItem;
 import Views.Panitia.swing.PopupMenu;
@@ -28,10 +29,15 @@ public class Main extends javax.swing.JFrame {
     private Header header;
     private MainForm main;
     private Animator animator;
+    private Form_Edit_Panitia formEditPanitia;
 
     public Main() {
         initComponents();
         init();
+    }
+
+    public void setFormEditPanitia(Form_Edit_Panitia form){
+        this.formEditPanitia = form;
     }
 
     private void init() {
@@ -40,35 +46,38 @@ public class Main extends javax.swing.JFrame {
         menu = new Menu();
         header = new Header();
         main = new MainForm();
-        menu.addEvent(new EventMenuSelected() {
-            @Override
-            public void menuSelected(int menuIndex, int subMenuIndex) {
-                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
-                switch(menuIndex) {
-                    case 0:
-                        if (subMenuIndex == 0) {
-                            main.showForm(new Form_Home());
-                        } else if (subMenuIndex == 1) {
-                            main.showForm(new Form1());
-                        }
-                        break;
-                    case 1:
-                        if (subMenuIndex == 0) {
-                            main.showForm(new Form_Akun_Panitia());
-                        } else if (subMenuIndex == 1) {
-                            main.showForm(new Form_Akun_Peserta());
-                        }
-                        break;
+        if(formEditPanitia == null){
+            menu.addEvent(new EventMenuSelected() {
+                @Override
+                public void menuSelected(int menuIndex, int subMenuIndex) {
+                    System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
+                    switch(menuIndex) {
+                        case 0:
+                            if (subMenuIndex == 0) {
+                                main.showForm(new Form_Home());
+                            } else if (subMenuIndex == 1) {
+                                main.showForm(new Form1());
+                            }
+                            break;
+                        case 1:
+                            if (subMenuIndex == 0) {
+                                main.showForm(new Form_Akun_Panitia());
+                            } else if (subMenuIndex == 1) {
+                                main.showForm(new Form_Akun_Peserta());
+                            }
+                            break;
+                    }
+                    // if (menuIndex == 0) {
+                    //     if (subMenuIndex == 0) {
+                    //         main.showForm(new Form_Home());
+                    //     } else if (subMenuIndex == 1) {
+                    //         main.showForm(new Form1());
+                    //     }
+                    // }
                 }
-                // if (menuIndex == 0) {
-                //     if (subMenuIndex == 0) {
-                //         main.showForm(new Form_Home());
-                //     } else if (subMenuIndex == 1) {
-                //         main.showForm(new Form1());
-                //     }
-                // }
-            }
-        });
+            });
+        }
+        // main.showForm(new Form_Edit_Panitia("1"));
         menu.addEventShowPopup(new EventShowPopupMenu() {
             @Override
             public void showPopup(Component com) {
@@ -123,7 +132,13 @@ public class Main extends javax.swing.JFrame {
         //  Init google icon font
         IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
         //  Start with this form
-        main.showForm(new Form_Home());
+        if (formEditPanitia != null) {
+            main.showForm(formEditPanitia);
+            // formEditPanitia = null;
+        } else {
+            main.showForm(new Form_Home());
+        }
+
     }
 
     @SuppressWarnings("unchecked")
