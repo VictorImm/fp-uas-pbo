@@ -1,11 +1,13 @@
 package Views.treot.component;
 
+import Views.Login.swing.Button;
 import Views.treot.model.ModelSoal;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionListener;
 
 public class Soal extends javax.swing.JPanel {
 
@@ -25,8 +27,34 @@ public class Soal extends javax.swing.JPanel {
         setBackground(new Color(112, 69, 246));
         colorGradient = new Color(255, 255, 255);
         // initSoalData();
-    }
+        
+        // Button Array
+        Button[] buttons = {button1, button2, button3, button4, button5};
+        
+        // Event Listener
+        for (int i = 0; i < buttons.length; i++) {
+            final int index = i; // Create a final variable for the ActionListener
 
+            buttons[i].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    // Change Selected Color
+                    for (int j = 0; j < buttons.length; j++) {
+                        buttons[j].setBackground(j == index ? new Color(0, 0, 255) : new Color(255, 255, 255));
+                    }
+                }
+            });
+        }
+        
+        // Event Listener Gacha Jawaban
+        button6.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    // TODO: Buka frame gacha opsinya di sini
+                }
+            });
+
+    }
 
     public void setData(ModelSoal data) {
         jLabel1.setText("<html>" + data.getSoal() + "</html>");
@@ -48,6 +76,7 @@ public class Soal extends javax.swing.JPanel {
         button3 = new Views.Login.swing.Button();
         button4 = new Views.Login.swing.Button();
         button5 = new Views.Login.swing.Button();
+        button6 = new Views.Login.swing.Button();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
@@ -71,11 +100,6 @@ public class Soal extends javax.swing.JPanel {
         );
 
         button1.setText("jawaban1");
-        button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
-            }
-        });
 
         button2.setText("jawaban3");
 
@@ -84,11 +108,8 @@ public class Soal extends javax.swing.JPanel {
         button4.setText("jawaban4");
 
         button5.setText("jawaban5");
-        button5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button5ActionPerformed(evt);
-            }
-        });
+
+        button6.setText("Don't know?");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -110,12 +131,17 @@ public class Soal extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(217, 217, 217)
                 .addComponent(button5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(230, 230, 230))
+                .addGap(321, 321, 321))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(button6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addComponent(button6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
                 .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -130,16 +156,6 @@ public class Soal extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
-        new Views.treot.main.Main().repaint();
-        System.out.println("hoaks");
-    }//GEN-LAST:event_button1ActionPerformed
-
-    private void button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button5ActionPerformed
 
     @Override
     protected void paintComponent(Graphics grphcs) {
@@ -157,6 +173,7 @@ public class Soal extends javax.swing.JPanel {
     private Views.Login.swing.Button button3;
     private Views.Login.swing.Button button4;
     private Views.Login.swing.Button button5;
+    private Views.Login.swing.Button button6;
     private javax.swing.JLabel jLabel1;
     private Views.Assets.swing.PanelRound panelRound1;
     // End of variables declaration//GEN-END:variables

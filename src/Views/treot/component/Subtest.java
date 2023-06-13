@@ -40,7 +40,6 @@ public class Subtest extends javax.swing.JPanel {
             // JsonElement listSubtest = respon.get("subtests").getAsJsonArray();
             for(JsonElement dataSubtest : respon.get("subtests").getAsJsonArray()){
                 dataID.add(dataSubtest.getAsJsonObject().get("id").getAsString());
-                // System.out.println("sontol");
             }
         }catch(Exception e) {
             System.out.println("eror" + e.getMessage());
