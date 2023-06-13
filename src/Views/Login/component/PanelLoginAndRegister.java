@@ -96,9 +96,10 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
                         new Views.Panitia.main.Main().setVisible(true);
                         // Jika peserta direct ke page tryout
                     } else if (role == 1) {
-                        EventQueue.invokeLater(() -> {
-                            Views.TryOut.Main.main(new String[]{});
-                        });
+//                        EventQueue.invokeLater(() -> {
+//                            Views.TryOut.Main.main(new String[]{});
+//                        });
+                        new Views.treot.main.Main().setVisible(true);
                     }
                 } else {
                     alert.setText(notif);
